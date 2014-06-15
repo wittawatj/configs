@@ -3,6 +3,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
+set incsearch 
+set hlsearch
+" case-insensitive when search terms contain all lower-case characters
+set smartcase
 
 " for Pathogen (plugin manager)
 call pathogen#infect()
