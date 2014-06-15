@@ -10,3 +10,16 @@ I initiated a repository at `~/git/configs/` and used
 
 so that the worktree points to the home folder.
 
+
+load back
+---------
+
+To load back the configuration files, go to `~/git/configs/` and do 
+
+    git clone --no-checkout git@github.com:wittawatj/configs.git 
+    cd configs
+    git config core.worktree "../../../" 
+    git reset --hard origin/master
+
+The loaded configuration files will replace the current files at the same paths. 
+
