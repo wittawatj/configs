@@ -1,0 +1,11 @@
+~*
+AfterShot_cache/*
+_cache/*
+found.000/*
+$RECYCLE.BIN/*
+Recycled/*
+RECYCLER/*
+System Volume Information/*
+.Trash*
+movies/*
+music/*

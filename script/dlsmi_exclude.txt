@@ -1,0 +1,11 @@
+*~
+*.o
+settings.m
+*.mex*
+svm-predict
+svm-scale
+svm-train
+*.mexglx
+*.mexa64
+*.mat
+.*

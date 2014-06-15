@@ -1,0 +1,7 @@
+*~
+*.o
+svm_learn
+svm_classify
+settings.m
+*.mat
+.*
