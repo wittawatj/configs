@@ -7,8 +7,10 @@ set incsearch
 set hlsearch
 " case-insensitive when search terms contain all lower-case characters
 set smartcase
-se guioptions=agim
-se guioptions-=e
+" se guioptions=agim
+" se guioptions-=e
+set guioptions-=T  "remove toolbar
+set backspace=indent,eol,start
 
 " for Vundle 
 " -----------------------------------------------
@@ -53,15 +55,24 @@ syntax enable
 " else
 "     set background=light
 " endif
-" let g:solarized_termtrans=1
-" let g:solarized_termcolors=256
-" let g:solarized_contrast="normal"
-" let g:solarized_visibility="normal"
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
 " colorscheme solarized
+colorscheme molokai 
 
 " font
-set guifont=Inconsolata\ 12
+set guifont=Inconsolata\ 13
 
 " for syntastic
 " let g:syntastic_matlab_checkers = ['mlint']
 
+" for vim-easymotion 
+" let g:EasyMotion_leader_key = '\' 
+" nmap s <Plug>(easymotion-s)
+nmap t <Plug>(easymotion-s2)
+
+" JK motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
