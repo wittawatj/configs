@@ -130,3 +130,4 @@ export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 
 # For colors in vim in terminal 
 export TERM="xterm-256color"
+export MYLOCAL="/nfs/nhome/live/wittawat/local/"
