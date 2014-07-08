@@ -110,6 +110,8 @@ fi
 #export MATLAB_ROOT=/opt/matlab-R2012b/
 
 export PATH=$HOME/local/bin:$HOME/.local/bin:$HOME/bin/:/opt/matlab-R2012b/bin:$PATH
+#export PATH=$HOME/.local/bin:$HOME/bin/:/opt/matlab-R2012b/bin:$PATH
+
 # for anaconda 
 export PATH=/nfs/nhome/live/wittawat/software/anaconda/bin:$PATH
 
@@ -131,3 +133,7 @@ export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 # For colors in vim in terminal 
 export TERM="xterm-256color"
 export MYLOCAL="/nfs/nhome/live/wittawat/local/"
+
+# add path to .pc files for pkg-config
+export PKG_CONFIG_PATH=/nfs/nhome/live/wittawat/local/lib/pkgconfig:$PKG_CONFIG_PATH
+

@@ -88,7 +88,7 @@ hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
 hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 " for vim-session
-let g:session_autosave_periodic=5
+let g:session_autosave_periodic=10
 let g:session_autosave="prompt"
 let g:session_autoload="no"
 
