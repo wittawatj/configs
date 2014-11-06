@@ -107,10 +107,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 
-#export MATLAB_ROOT=/opt/matlab-R2012b/
-
-export PATH=$HOME/local/bin:$HOME/.local/bin:$HOME/bin/:/opt/matlab-R2012b/bin:$PATH
-#export PATH=$HOME/.local/bin:$HOME/bin/:/opt/matlab-R2012b/bin:$PATH
+#export MATLAB_ROOT=matlab-R2012b/
 
 # for anaconda 
 export PATH=/nfs/nhome/live/wittawat/software/anaconda/bin:$PATH
@@ -118,11 +115,10 @@ export PATH=/nfs/nhome/live/wittawat/software/anaconda/bin:$PATH
 #xgamma -bgamma 0.85
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
-
 # This helps some Java applications to work properly with XMonad
 export AWT_TOOLKIT=MToolkit
 #export MATLAB_JAVA=/usr/lib/jvm/java-1.7.0-openjdk-amd64/jre
-export MATLAB_JAVA=/usr/lib/jvm/java-1.6.0-openjdk-amd64/jre
+export MATLAB_JAVA=/usr/lib/jvm/java-7-openjdk-amd64/jre
 
 export PYTHONPATH=:$HOME/local/python_packages/Python-Markdown/build/lib.linux-x86_64-2.7:$PYTHONPATH
 
@@ -136,4 +132,7 @@ export MYLOCAL="/nfs/nhome/live/wittawat/local/"
 
 # add path to .pc files for pkg-config
 export PKG_CONFIG_PATH=/nfs/nhome/live/wittawat/local/lib/pkgconfig:$PKG_CONFIG_PATH
+
+# start fish shell
+fish
 

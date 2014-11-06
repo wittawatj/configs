@@ -4,8 +4,8 @@
 
 num=$1
 cdpath="/nfs/nhome/live/wittawat/SHARE/gatsby/research/code"
-matlab_path="/opt/matlab-R2012b/bin/matlab"
+#matlab_path="/opt/matlab-R2012b/bin/matlab"
 
 echo "starting a multicore Matlab slave"
-${matlab_path} -nodesktop -nosplash -singleCompThread -r "cd ${cdpath}; startup; multicoreSlaveLoop(); " 
+matlab -nodesktop -nosplash -singleCompThread -r "cd ${cdpath}; startup; multicoreSlaveLoop(); " 
 

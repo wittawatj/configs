@@ -138,5 +138,3 @@ filetype *.jpg,*.png eog
 " What should be saved automatically between vifm runs
 " Like in previous versions of vifm
 " set vifminfo=options,filetypes,commands,bookmarks,tui,state,cs,chistory,shistory,dirstack,registers,phistory
-" Like in vi
-set vifminfo=bookmarks,chistory,shistory,phistory

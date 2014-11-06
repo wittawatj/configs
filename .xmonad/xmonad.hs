@@ -11,14 +11,22 @@ import XMonad.Hooks.EwmhDesktops
 
 
 import XMonad.Layout.Accordion
-import XMonad.Layout.Dishes
+{-import XMonad.Layout.Circle-}
+{-import XMonad.Layout.BoringWindows-}
+import XMonad.Layout.DecorationMadness
+{-import XMonad.Layout.Dishes-}
+{-import XMonad.Layout.DragPane-}
+{-import XMonad.Layout.Drawer -}
+import XMonad.Layout.Cross
 import XMonad.Layout.Grid
 import XMonad.Layout.MosaicAlt
+import XMonad.Layout.Minimize
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spiral
 import XMonad.Layout.StackTile
 import XMonad.Layout.SimpleDecoration
 import XMonad.Layout.DwmStyle
+import XMonad.Layout.WindowArranger
 import XMonad.Util.Themes
 import XMonad.Config.Desktop (desktopLayoutModifiers)
 import System.Exit
@@ -50,8 +58,8 @@ myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 
 wspaces :: [WorkspaceId]
-wspaces =  ["~", "1","2","3","4","5","6","7","8","9", "0", "-", "+"]
-wspaces_keys = [xK_grave, xK_1, xK_2, xK_3, xK_4, xK_5, xK_6, xK_7, xK_8, xK_9, xK_0, xK_minus, xK_equal, xK_BackSpace]
+wspaces =  ["~", "1","2","3","4","5","6","7","8","9", "0", "-", "=", "Del", "F7", "F8", "F9"]
+wspaces_keys = [xK_grave, xK_1, xK_2, xK_3, xK_4, xK_5, xK_6, xK_7, xK_8, xK_9, xK_0, xK_minus, xK_equal, xK_BackSpace, xK_F7, xK_F8, xK_F9]
  
  
 ------------------------------------------------------------------------
@@ -90,7 +98,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_k     ), windows W.focusUp  )
  
     -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
+    {-, ((modm,               xK_m     ), windows W.focusMaster  )-}
  
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
@@ -127,6 +135,23 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm,               xK_m     ), withFocused minimizeWindow)
+    , ((modm .|. shiftMask, xK_m     ), sendMessage RestoreNextMinimizedWin)
+
+    , ((modm .|. controlMask              , xK_s    ), sendMessage  Arrange         )
+    , ((modm .|. controlMask .|. shiftMask, xK_s    ), sendMessage  DeArrange       )
+    , ((modm .|. controlMask              , xK_Left ), sendMessage (MoveLeft      10))
+    , ((modm .|. controlMask              , xK_Right), sendMessage (MoveRight     10))
+    , ((modm .|. controlMask              , xK_Down ), sendMessage (MoveDown      10))
+    , ((modm .|. controlMask              , xK_Up   ), sendMessage (MoveUp        10))
+    , ((modm                 .|. shiftMask, xK_Left ), sendMessage (IncreaseLeft  10))
+    , ((modm                 .|. shiftMask, xK_Right), sendMessage (IncreaseRight 10))
+    , ((modm                 .|. shiftMask, xK_Down ), sendMessage (IncreaseDown  10))
+    , ((modm                 .|. shiftMask, xK_Up   ), sendMessage (IncreaseUp    10))
+    , ((modm .|. controlMask .|. shiftMask, xK_Left ), sendMessage (DecreaseLeft  10))
+    , ((modm .|. controlMask .|. shiftMask, xK_Right), sendMessage (DecreaseRight 10))
+    , ((modm .|. controlMask .|. shiftMask, xK_Down ), sendMessage (DecreaseDown  10))
+    , ((modm .|. controlMask .|. shiftMask, xK_Up   ), sendMessage (DecreaseUp    10))
     ]
     ++
  
@@ -160,8 +185,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
  
 -- myLayout = tiled ||| Mirror tiled ||| Full ||| Mirror Accordion ||| GridRatio (9/16) ||| StackTile 1 (3/100) (1/2)
-myLayout =  tiled ||| Mirror tiled ||| Full ||| Mirror Accordion ||| GridRatio(16/9) ||| Mirror (StackTile 1 (3/100) (1/2) ) 
-  where
+myLayout = minimize ( tallSimpleTabbed ||| mirrorTallSimpleTabbed ||| Full ||| Mirror accordionSimpleTabbed  ||| Mirror (StackTile 1 (2/100) (2/3) )  )
+ {-||| GridRatio(16/9) -}
+    where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = ResizableTall nmaster delta ratio []
  
@@ -187,8 +213,8 @@ myL = dwmStyle shrinkText defaultTheme { activeColor         = "#4c7899"
                                                , fontName            = "-*-fixed-medium-r-*--16-*-*-*-*-*-iso8859-1"
                                                , decoHeight          = 16
                                                } myLayout
-myXmonadBar = "dzen2 -x '50' -y '1060' -h '20' -w '1920' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E' -xs 1  "
-myStatusBar = "conky -c /nfs/nhome/live/wittawat/.xmonad/.conky_dzen | dzen2 -m -x '1300' -w '620'  -y '1060' -h '20' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -xs 1"
+myXmonadBar = "dzen2 -x '30' -y '1180' -h '20' -w '1920' -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E' -xs 1  "
+myStatusBar = "conky -c /nfs/nhome/live/wittawat/.xmonad/.conky_dzen | dzen2 -m -x '1300' -w '620'  -y '1180' -h '20' -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF' -xs 1"
 
 
 myBitmapsDir = "/usr/share/dzen2"

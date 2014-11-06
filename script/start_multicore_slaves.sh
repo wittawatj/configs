@@ -4,7 +4,8 @@
 
 num=$1
 cdpath="/nfs/nhome/live/wittawat/SHARE/gatsby/research/code"
-matlab_path="/opt/matlab-R2012b/bin/matlab"
+#matlab_path="/opt/matlab-R2012b/bin/matlab"
+matlab_path="/opt/matlab-R2014a/bin/matlab"
 for i in $(seq 1 $num)
 do
 	echo "starting a multicore Matlab slave on screen #${i}"
