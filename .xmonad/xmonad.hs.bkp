@@ -1,0 +1,23 @@
+import XMonad
+import XMonad.Config.Gnome
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.ManageDocks
+
+ 
+myManageHook = composeAll
+    [ className =? "Gimp"      --> doFloat
+    , className =? "Cinepaint" --> doFloat
+    ,	manageDocks 
+    ]
+ 
+
+
+main = xmonad gnomeConfig
+        { modMask = mod4Mask -- Use Win instead of Alt
+        , manageHook = myManageHook <+> manageHook defaultConfig-- make sure to include myManageHook definition from above
+		
+--		, startupHook = setWMName "LG3D"
+		, layoutHook = avoidStruts  $  layoutHook defaultConfig
+        }
+        
+

@@ -1,0 +1,33 @@
+import XMonad
+import XMonad.Config.Gnome
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.ManageDocks
+import qualified XMonad.StackSet as W
+import XMonad.Util.EZConfig
+
+ 
+myManageHook = composeAll
+    [ className =? "Gimp"      --> doFloat
+    , className =? "Cinepaint" --> doFloat
+    ,	manageDocks 
+    ]
+ 
+
+main = do 
+	xmonad $ gnomeConfig { 
+		modMask = mod4Mask -- Use Win instead of Alt
+        , manageHook = myManageHook <+> manageHook defaultConfig-- make sure to include myManageHook definition from above
+		
+		, layoutHook = avoidStruts  $  layoutHook defaultConfig
+        } `additionalKeysP` myKeys
+        
+myWorkspaces = ["one","two","three","foo","bar","baz","lambda","no","more"]
+
+myKeys =
+    [
+    -- other additional keys
+    ]
+    ++
+    [((m .|. mod4Mask, k), windows $ f i)
+         | (i, k) <- zip myWorkspaces [xK_1 .. xK_9]
+         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
