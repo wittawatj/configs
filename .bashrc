@@ -111,6 +111,7 @@ fi
 
 # for anaconda 
 export PATH=/nfs/nhome/live/wittawat/software/anaconda/bin:$PATH
+export PATH=/nfs/nhome/live/wittawat/software/mizar_install:$PATH
 
 #xgamma -bgamma 0.85
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
@@ -132,6 +133,9 @@ export MYLOCAL="/nfs/nhome/live/wittawat/local/"
 
 # add path to .pc files for pkg-config
 export PKG_CONFIG_PATH=/nfs/nhome/live/wittawat/local/lib/pkgconfig:$PKG_CONFIG_PATH
+
+# mizar 
+export MIZFILES=/nfs/nhome/live/wittawat/local/share
 
 # start fish shell
 fish
