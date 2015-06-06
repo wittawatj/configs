@@ -1,2 +1,3 @@
 autocmd LocationChange .*                          js modes.passAllKeys = false
 autocmd LocationChange localhost:8888/*            js modes.passAllKeys = true
+autocmd LocationChange docs.google.*               js modes.passAllKeys = true

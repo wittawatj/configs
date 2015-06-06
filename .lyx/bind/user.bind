@@ -6,5 +6,5 @@ Format 2
 \unbind "C-s" "buffer-write"
 
 \bind "M-m q" "math-delim Vert Vert"
-\bind "C-s" "command-sequence buffer-write; buffer-view;"
+\bind "C-s" "command-sequence buffer-write;"
 

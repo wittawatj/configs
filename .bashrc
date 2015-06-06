@@ -121,7 +121,8 @@ export AWT_TOOLKIT=MToolkit
 #export MATLAB_JAVA=/usr/lib/jvm/java-1.7.0-openjdk-amd64/jre
 export MATLAB_JAVA=/usr/lib/jvm/java-7-openjdk-amd64/jre
 
-export PYTHONPATH=:$HOME/local/python_packages/Python-Markdown/build/lib.linux-x86_64-2.7:$PYTHONPATH
+#export PYTHONPATH=:$HOME/local/python_packages/Python-Markdown/build/lib.linux-x86_64-2.7:$HOME/git/kernelABC/code/thirdpartycode/abcpy:$PYTHONPATH
+export PYTHONPATH=$HOME/git/gatsby-hackathon-seizure/code/python:$HOME/local/python_packages/Python-Markdown/build/lib.linux-x86_64-2.7:$PYTHONPATH
 
 export LIBOVERLAY_SCROLLBAR=0
 # local lib

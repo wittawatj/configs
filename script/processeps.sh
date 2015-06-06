@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Wittawat Jitkrittum
+# Find all eps files in the current folder, crop and convert them to pdf.
 
 for f in $(find $(pwd) -maxdepth 1 -type f -name "*.eps" -not -name "*-crop.eps")
 do
@@ -8,7 +10,7 @@ do
 	pdfcrop $(basename $f ".eps")".pdf"
 	pdftops -eps $(basename $f ".eps")"-crop.pdf" $(basename $f ".eps")"-crop.eps"
 	#pdf2ps $(basename $f ".eps")"-crop.pdf"
-	rm $(basename $f ".eps")".pdf"
+	#rm $(basename $f ".eps")".pdf"
 	#rm $(basename $f ".eps")"-crop.pdf"
 	rm $(basename $f ".eps")"-crop.eps"
 done

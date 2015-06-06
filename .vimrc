@@ -142,3 +142,13 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extr
 " For CtrlP
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mat     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" vim-latex (latex suite)
+" See: http://vim-latex.sourceforge.net/documentation/latex-suite/customizing-what-to-fold.html
+autocmd FileType tex setlocal nofoldenable
+let g:Tex_DefaultTargetFormat='pdf'
+"let g:Tex_FoldedSections=""
+"let g:Tex_FoldedEnvironments=""
+"let g:Tex_FoldedMisc=""
+let g:Tex_GotoError=0 
+
