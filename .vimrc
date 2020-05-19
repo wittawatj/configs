@@ -1,4 +1,54 @@
+set nocompatible
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-syntastic/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'ajh17/VimCompletesMe'
+Plug 'vim-latex/vim-latex'
+Plug 'xolox/vim-misc'
+Plug 'tpope/vim-repeat'
+Plug 'xolox/vim-session'
+Plug 'tpope/vim-surround'
+Plug 'morhetz/gruvbox'
+Plug 'easymotion/vim-easymotion'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'altercation/vim-colors-solarized'
+Plug 'joshdick/onedark.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'rakr/vim-one'
+" Theme
+Plug 'dracula/vim', { 'as': 'dracula' }
+call plug#end()
+
+let g:indent_guides_enable_on_vim_startup = 1
+
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:mapleader='\'
+
+filetype plugin indent on    " required
+syntax on
+
 " http://vim.wikia.com/wiki/Indenting_source_code
+let g:NERDTreeWinSize=29
+let g:NERDTreeIgnore = ['__pycache__']
+"
+" disable annoying beep sound
+set noeb vb t_vb=
+autocmd FileType vim let b:vcm_tab_complete = 'vim'
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -7,32 +57,17 @@ set incsearch
 set hlsearch
 " case-insensitive when search terms contain all lower-case characters
 set smartcase
+set smartindent
 " se guioptions=agim
 " se guioptions-=e
 set guioptions-=T  "remove toolbar
 set backspace=indent,eol,start
 
-" for Vundle 
-" -----------------------------------------------
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" --------- end Vundle --------------------------
-
-" for Pathogen (plugin manager)
-call pathogen#infect()
+" do not use smartindent with Pyhon. Typing # at the beginning of the line
+" removes all the indentation in the line.
+au! FileType python setl nosmartindent
+" remove menu bar in gvim
+:set guioptions-=m  
 
 
 " auto reload .vimrc when there is a change
@@ -52,29 +87,99 @@ syntax enable
 " else
 "     set background=light
 " endif
+"colorscheme solarized
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
-" colorscheme solarized
-colorscheme molokai 
+
+let g:tagbar_width=27
+
+"color summerfruit256
+"set t_Co=256   " This is may or may not needed.
+"colorscheme PaperColor
+"colorscheme one
+"colorscheme gruvbox
+colorscheme dracula
+"colorscheme onedark
+"colorscheme palenight
+"colorscheme OceanicNext
+"
+"
+"set termguicolors     " enable true colors support
+"let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+
+" Vim
+"let g:indentLine_color_term = 239
+
+" GVim
+"let g:indentLine_color_gui = '#A4E57E'
+"let g:indentLine_enabled = 0
+"let ayucolor="dark"   " for dark version of theme
+
+"colorscheme ayu
+"colorscheme github
+"colorscheme github
+
+" specific to gruvbox theme
+"https://github.com/morhetz/gruvbox/wiki/Configuration
+set background=dark
+"let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_dark="soft"
+let g:gruvbox_contrast_light="hard"
+"let g:gruvbox_improved_strings=1
+"let g:gruvbox_improved_warnings=1
+" -- end of gruvbox config --
+
+let g:PaperColor_Theme_Options = {
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     },
+  \     'cpp': {
+  \       'highlight_standard_library': 1
+  \     },
+  \     'c': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
 
 " font
-set guifont=Inconsolata\ 12
-"set guifont=Monospace\ 12
-"set guifont=Monaco\ 12
+set guifont=Inconsolata\ 14
+"set guifont=Monospace\ 10
+"set guifont=Monaco\ 10
+"set guifont=Courier\ Primal\ 11
+"set guifont=Menlo\ 10
 
 " for syntastic
 " let g:syntastic_matlab_checkers = ['mlint']
+"let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['pyflakes']
+
+" For syntastic plugin
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " for vim-easymotion 
 " let g:EasyMotion_leader_key = '\' 
-" nmap s <Plug>(easymotion-s)
-nmap t <Plug>(easymotion-s2)
-
-" JK motions
+"
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+" nmap s <Plug>(easymotion-s)
+"nmap t <Plug>(easymotion-s2)
+
+" JK motions
+"map <Leader>j <Plug>(easymotion-j)
+"map <Leader>k <Plug>(easymotion-k)
+"map <Leader> <Plug>(easymotion-prefix)
 
 set colorcolumn=80
 
@@ -92,63 +197,56 @@ let g:session_autosave_periodic=15
 let g:session_autosave="prompt"
 let g:session_autoload="no"
 
-"" for Omnisharp 
-"augroup omnisharp_commands
-   "autocmd!
-
-   ""Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
-   "autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-   "" Synchronous build (blocks Vim)
-   ""autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
-   "" Builds can also run asynchronously with vim-dispatch installed
-   "autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
-   "autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-
-   "" Automatically add new cs files to the nearest project on save
-   ""autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-
-   ""show type information automatically when the cursor stops moving
-   "autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-   ""The following commands are contextual, based on the current cursor position.
-   "autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
-   ""autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
-   ""autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
-   ""autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
-   ""autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
-   ""autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr> "finds members in the current buffer
-
-   "" cursor can be anywhere on the line containing an issue 
-   ""autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>  
-   ""autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
-   ""autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
-   ""autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
-   ""autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr> "navigate up by method/property/field
-   ""autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr> "navigate down by method/property/field
-
-"augroup END
 
 "" Contextual code actions (requires CtrlP)
 "nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
 "" Run code actions with text selected in visual mode to extract method
 "vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
 
-" YouCompleteMe
-" auto-close after selecting a completion string 
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 
 " For CtrlP
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.mat     " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)|img_align_celeba$'
+" Make CtrlP ignore files in .gitignore to make it load faster.
+"https://medium.com/a-tiny-piece-of-vim/making-ctrlp-vim-load-100x-faster-7a722fae7df6
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " vim-latex (latex suite)
 " See: http://vim-latex.sourceforge.net/documentation/latex-suite/customizing-what-to-fold.html
 autocmd FileType tex setlocal nofoldenable
+autocmd FileType tex setlocal autoread
 let g:Tex_DefaultTargetFormat='pdf'
 "let g:Tex_FoldedSections=""
 "let g:Tex_FoldedEnvironments=""
 "let g:Tex_FoldedMisc=""
 let g:Tex_GotoError=0 
+let g:Tex_FoldedSections=""
+let g:Tex_FoldedEnvironments=""
+let g:Tex_FoldedMisc=""
 
+" http://tex.stackexchange.com/questions/150770/how-to-make-vim-short-key-for-xelatex-and-pdflatex-both
+function SetXeTex()
+    let g:Tex_CompileRule_pdf = 'xelatex -aux-directory=/tmp --synctex=-1 -src-specials -interaction=nonstopmode $*'
+endfunction
+map <Leader>lx :<C-U>call SetXeTex()<CR>
+
+
+" Use neocomplete.
+" https://github.com/Shougo/neocomplete.vim
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
