@@ -1,0 +1,26 @@
+set-window-option -g mode-keys vi
+#bind -t vi-copy 'v' begin-selection
+#bind -t vi-copy 'y' copy-selection
+
+# bind 'C-a C-a' to type 'C-a'
+bind C-a send-prefix
+unbind C-b
+
+#switch panels
+bind k selectp -U # switch to panel Up
+bind j selectp -D # switch to panel Down 
+bind h selectp -L # switch to panel Left
+bind l selectp -R # switch to panel Right
+
+# bind to ctrl+a instead of the default ctrl+b
+set -g prefix C-a
+unbind-key C-b
+
+#
+#### COLOUR (Solarized dark). From https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-dark.conf
+
+
+# default statusbar colors
+set-option -g status-bg colour235 #base02
+set-option -g status-fg colour136 #yellow
+
