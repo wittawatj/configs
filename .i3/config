@@ -11,9 +11,9 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 22
 #font -misc-fixed-medium-r-normal--14-120-75-75-C-70-iso10646-1
-#font pango:DejaVu Sans Mono 10
+#font pango:DejaVu Sans Mono 18
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
 #font pango:Terminus 15px
 
@@ -243,11 +243,12 @@ focus_follows_mouse no
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 #bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 2+ unmute"
-bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 2- unmute"
+bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+"
+bindsym XF86AudioLowerVolume exec "amixer set Master 5%-"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
-bindsym XF86MonBrightnessDown exec "sudo ~/script/addbacklight.sh -400"
-bindsym XF86MonBrightnessUp exec "sudo ~/script/addbacklight.sh 400"
+bindsym XF86MonBrightnessDown exec "~/script/addbacklight.sh -3"
+bindsym XF86MonBrightnessUp exec "~/script/addbacklight.sh 3"
+#bindsym XF86MonBrightnessUp exec "echo 'aaa' > ~/a.txt"
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #4c7899 #ffffff #2e9ef4   #ffa963
@@ -269,6 +270,6 @@ client.unfocused        #333333 #222222 #999999 #292d2e   #222222
 exec i3-config-wizard
 
 # start dropbox
-exec --no-startup-id dropbox start
-exec --no-startup-id nm-applet 
+#exec --no-startup-id dropbox start
+#exec --no-startup-id nm-applet 
 #exec xrandr --dpi 220
